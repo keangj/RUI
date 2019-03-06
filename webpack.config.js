@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const config = {
@@ -6,7 +7,7 @@ const config = {
   output: { // 输出
     path: path.resolve(__dirname, 'dist/lib'),  //想要生成到哪里
     filename: 'my-first-webpack.bundle.js',  // webpack bundle 的名称
-    library: 'xxx',
+    library: 'RUI',
     libraryTarget: 'umd'  // 指定代码封装模块定义
   },
   module: { // 配置加载资源
@@ -16,7 +17,12 @@ const config = {
         loader: 'awesome-typescript-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    })
+  ]
 };
 
 module.exports = config;
