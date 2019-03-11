@@ -1,12 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const config = {
-  mode: "development",
+  // mode: "development",
   entry: './lib/index.tsx',  // 输入：项目主文件（入口文件）
   output: { // 输出
     path: path.resolve(__dirname, 'dist/lib'),  //想要生成到哪里
-    // filename: 'my-first-webpack.bundle.js',  // webpack bundle 的名称
+    // filename: 'index.js',  // webpack bundle 的名称
     library: 'RUI',
     libraryTarget: 'umd'  // 指定代码封装模块定义
   },
@@ -21,25 +20,6 @@ const config = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html'
-    })
-  ],
-  externals: { // 外部库不打包
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'react',
-      root: 'React'
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'react-dom',
-      root: 'ReactDom'
-    }
-  }
 };
 
 module.exports = config;
