@@ -1,7 +1,6 @@
 const path = require('path');
 
 const config = {
-  // mode: "development",
   entry: './lib/index.tsx',  // 输入：项目主文件（入口文件）
   output: { // 输出
     path: path.resolve(__dirname, 'dist/lib'),  //想要生成到哪里
@@ -9,9 +8,9 @@ const config = {
     library: 'RUI',
     libraryTarget: 'umd'  // 指定代码封装模块定义
   },
-  // resolve: {
-  //   extensions: ['.ts', '.tsx', '.js', '.jsx'] // 拓展名
-  // },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'] // 拓展名
+  },
   module: { // 配置加载资源
     rules: [  // 规则
       { 

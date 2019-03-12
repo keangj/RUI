@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-// import Button from './button';
-
-ReactDOM.render(<button></button>, document.body)
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+import Button from './button';
+const a = 1
+export { Button, a }
+// ReactDOM.render(<button></button>, document.body)
