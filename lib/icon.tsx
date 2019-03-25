@@ -3,12 +3,13 @@ import './importicons';
 import './icon.scss'
 
 interface IconProps {
-  name: string
+  name: string,
+  onClick: () => void
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
   return (
-      <svg className="rui-icon">
+      <svg className="rui-icon" onClick={props.onClick}>
         <use xlinkHref={`#${props.name}`}/>
       </svg>
   )
