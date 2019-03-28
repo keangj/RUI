@@ -9,13 +9,3 @@ exports[`icon icon 渲染成功 1`] = `
   />
 </svg>
 `;
-
-exports[`icon 是个 div 1`] = `
-<svg
-  className="rui-icon"
->
-  <use
-    xlinkHref="#qq"
-  />
-</svg>
-`;
