@@ -3,7 +3,7 @@ import Dialog from './dialog';
 import { useState } from 'react';
 
 export default function () {
-  const [x, setX] = useState(false);
+  const [x, setX] = useState(true);
   return (
     <div>
       <button onClick={() => setX(!x)}>click</button>
