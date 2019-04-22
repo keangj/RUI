@@ -22,6 +22,14 @@
     bottom: 0;
     background-color: fade_out(#000, 0.5);
   }
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+  }
   &-header {
 
   }
