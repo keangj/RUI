@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dialog from './dialog';
+import Dialog, { alert } from './dialog';
 import { useState } from 'react';
 
 export default function () {
@@ -33,6 +33,9 @@ export default function () {
         >
           你好
         </Dialog>
+      </div>
+      <div>
+        <button onClick={ () => alert('123') }>click</button>
       </div>
     </div>
   )

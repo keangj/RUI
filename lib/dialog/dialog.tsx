@@ -59,4 +59,22 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 // 添加 clickCloseMask 默认值
 Dialog.defaultProps = { clickCloseMask: false };
 
+const alert = (content: string) => {
+  const component = <Dialog
+    onClose={() => {
+      // 设置 visible 为 false
+      ReactDOM.render(React.cloneElement(component, { visible: false }), container);
+      // 删除 container 元素
+      ReactDOM.unmountComponentAtNode(container);
+      container.remove();
+    }}
+    visible={ true }>
+    content
+  </Dialog>;
+  const container = document.createElement('div');
+  document.body.append(container);
+  ReactDOM.render(component, container);
+};
+
+export { alert };
 export default Dialog;
