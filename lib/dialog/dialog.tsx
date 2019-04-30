@@ -56,4 +56,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
   return ReactDOM.createPortal(dialog, document.body);
 };
 
+// 添加 clickCloseMask 默认值
+Dialog.defaultProps = { clickCloseMask: false };
+
 export default Dialog;

@@ -30,7 +30,6 @@ export default function () {
             <button onClick={ () => setY(false) }>2</button>
           ]}
           onClose={ () => setY(false) }
-          clickCloseMask={ true }
         >
           你好
         </Dialog>
