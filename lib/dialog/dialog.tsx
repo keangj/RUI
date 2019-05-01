@@ -63,15 +63,17 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 Dialog.defaultProps = { clickCloseMask: false };
 
 const alert = (content: string) => {
+  const onClose = () => {
+    // 设置 visible 为 false
+    ReactDOM.render(React.cloneElement(component, { visible: false }), container);
+    // 删除 container 元素
+    ReactDOM.unmountComponentAtNode(container);
+    container.remove();
+  };
   const component = (
     <Dialog
-      onClose={() => {
-        // 设置 visible 为 false
-        ReactDOM.render(React.cloneElement(component, { visible: false }), container);
-        // 删除 container 元素
-        ReactDOM.unmountComponentAtNode(container);
-        container.remove();
-      }}
+      onClose={ onClose }
+      buttons={[<button onClick={ onClose }>确认</button>]}
       visible={ true }>
       { content }
     </Dialog>
