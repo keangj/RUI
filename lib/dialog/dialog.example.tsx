@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Dialog, { alert } from './dialog';
+import Dialog, { alert, modal, confirm } from './dialog';
 import { useState } from 'react';
 
 export default function () {
@@ -35,7 +35,17 @@ export default function () {
         </Dialog>
       </div>
       <div>
-        <button onClick={ () => alert('123') }>click</button>
+        <button onClick={ () => alert('123') }>alert</button>
+      </div>
+      <div>
+        <button onClick={ () => modal('123') }>modal</button>
+      </div>
+      <div>
+        <button onClick={ () => confirm('123',
+          () => { console.log('yes'); },
+          () => { console.log('no'); }
+          ) }
+        >confirm</button>
       </div>
     </div>
   )
