@@ -38,7 +38,7 @@ export default function () {
         <button onClick={ () => alert('123') }>alert</button>
       </div>
       <div>
-        <button onClick={ () => modal('123') }>modal</button>
+        <button onClick={ () => modal(<h1>modal</h1>) }>modal</button>
       </div>
       <div>
         <button onClick={ () => confirm('123',
