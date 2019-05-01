@@ -38,7 +38,12 @@ export default function () {
         <button onClick={ () => alert('123') }>alert</button>
       </div>
       <div>
-        <button onClick={ () => modal(<h1>modal</h1>) }>modal</button>
+        <button onClick={ () => {
+         const close =  modal(<h1>
+           modal
+           <button onClick={ () => close() }>close</button>
+         </h1>);
+        } }>modal</button>
       </div>
       <div>
         <button onClick={ () => confirm('123',
