@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment, ReactElement, ReactFragment, ReactNode} from 'react';
+import {Fragment, ReactElement, ReactNode} from 'react';
 import './dialog.scss'
 import ReactDOM from 'react-dom';
 
@@ -62,7 +62,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 // 添加 clickCloseMask 默认值
 Dialog.defaultProps = { clickCloseMask: false };
 
-const alert = (content: string) => {
+const modal = (content: ReactNode, buttons?: Array<ReactElement>, afterClose?: () => void) => {
   const onClose = () => {
     // 设置 visible 为 false
     ReactDOM.render(React.cloneElement(component, { visible: false }), container);
@@ -70,73 +70,42 @@ const alert = (content: string) => {
     ReactDOM.unmountComponentAtNode(container);
     container.remove();
   };
-  const component = (
-    <Dialog
-      onClose={ onClose }
-      buttons={[<button onClick={ onClose }>确认</button>]}
-      visible={ true }>
-      { content }
-    </Dialog>
-  );
-  const container = document.createElement('div');
-  document.body.append(container);
-  ReactDOM.render(component, container);
-};
 
-const confirm = (content: string, confirm?: () => void, cancel?: () => void) => {
-  const onConfirm = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), container);
-    ReactDOM.unmountComponentAtNode(container);
-    container.remove();
-    confirm && confirm()
-  };
-  const onCancel = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), container);
-    ReactDOM.unmountComponentAtNode(container);
-    container.remove();
-    cancel && cancel()
-  };
   const component = (
     <Dialog
-      onClose={() => {
-        // 设置 visible 为 false
-        ReactDOM.render(React.cloneElement(component, { visible: false }), container);
-        // 删除 container 元素
-        ReactDOM.unmountComponentAtNode(container);
-        container.remove();
+      onClose={ ()=> {
+        onClose();
+        afterClose && afterClose();
       }}
-      buttons={[
-        <button onClick={ onConfirm }>yes</button>,
-        <button onClick={ onCancel }>no</button>
-      ]}
+      buttons={ buttons }
       visible={ true }>
       { content }
     </Dialog>
   );
-  const container = document.createElement('div');
-  document.body.append(container);
-  ReactDOM.render(component, container);
-};
 
-const modal = (content: ReactNode | ReactFragment) => {
-  const onClose = () => {
-    // 设置 visible 为 false
-    ReactDOM.render(React.cloneElement(component, { visible: false }), container);
-    // 删除 container 元素
-    ReactDOM.unmountComponentAtNode(container);
-    container.remove();
-  };
-  const component = (
-    <Dialog
-      onClose={ onClose }
-      visible={ true }>
-      { content }
-    </Dialog>
-  );
   const container = document.createElement('div');
   document.body.append(container);
   ReactDOM.render(component, container);
   return onClose;
+};
+
+const alert = (content: string) => {
+      const onClose = modal(content,[<button onClick={ () => onClose() }>确认</button>])
+};
+
+const confirm = (content: string, confirm?: () => void, cancel?: () => void) => {
+  const onConfirm = () => {
+    onClose();
+    confirm && confirm();
+  };
+  const onCancel = () => {
+    onClose();
+    cancel && cancel();
+  };
+  const onClose = modal(content,[
+    <button onClick={ onConfirm }>yes</button>,
+    <button onClick={ onCancel }>no</button>
+  ], cancel);
 };
 
 export { alert, confirm, modal };
