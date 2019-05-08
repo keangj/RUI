@@ -13,7 +13,21 @@ const FormExample = () => {
     {name: 'password', label: '密码', input: {type: 'password'}},
   ]);
   const onSubmit = () => {
-    const error = Validator(formData, [{key: 'name', required: true}]);
+    const error = Validator(formData, [{
+      key: 'name',
+      required: true,
+      maxLength: 12,
+      minLength: 6,
+      pattern: /^[a-z]+$/
+    },
+    {
+      key: 'password',
+      required: true,
+      maxLength: 12,
+      minLength: 6,
+      pattern: /^[0-9]+$/
+    }
+    ]);
     console.log(error);
   };
 
