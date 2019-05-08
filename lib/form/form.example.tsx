@@ -8,6 +8,7 @@ const FormExample = () => {
     name: '123',
     password: ''
   });
+  const [errors, setErrors] = useState({});
   const [fields] = useState([
     {name: 'name', label: '用户名', input: {type: 'text'}},
     {name: 'password', label: '密码', input: {type: 'password'}},
@@ -29,6 +30,7 @@ const FormExample = () => {
     }
     ]);
     console.log(error);
+    setErrors(error);
   };
 
   return (
@@ -37,6 +39,7 @@ const FormExample = () => {
       fields={fields}
       onSubmit={onSubmit}
       onChange={(newValue) => setFormData(newValue)}
+      errors={errors}
       buttons={
         <Fragment>
           <button type="submit">提交</button>
