@@ -4,3 +4,11 @@ function classes(...names: (string | undefined)[]) {
 }
 
 export default classes;
+
+function scopedClassMaker(pre: string) {
+  return function (name?: string) {
+    return [pre, name].filter(Boolean).join('-');
+  }
+}
+
+export {scopedClassMaker}
