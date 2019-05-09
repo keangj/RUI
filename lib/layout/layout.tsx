@@ -10,7 +10,7 @@ const sc = scopedClassMaker('rui-layout');
 const Layout: React.FunctionComponent<Props> = (props) => {
   const {className, ...rest} = props;
   return (
-    <section className={[sc(), className].join(' ')} {...rest}>
+    <section className={sc('', {extra: className})} {...rest}>
       {props.children}
     </section>
   )

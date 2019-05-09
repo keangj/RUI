@@ -5,9 +5,16 @@ function classes(...names: (string | undefined)[]) {
 
 export default classes;
 
+interface Options {
+  extra: string | undefined;
+}
 function scopedClassMaker(pre: string) {
-  return function (name?: string) {
-    return [pre, name].filter(Boolean).join('-');
+  return function (name?: string, options?: Options) {
+    const className = [pre, name].filter(Boolean).join('-');
+    if (options && options.extra) {
+      return [className, options.extra].filter(Boolean).join(' ');
+    }
+    return className
   }
 }
 
