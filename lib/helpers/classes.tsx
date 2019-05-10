@@ -8,13 +8,28 @@ export default classes;
 interface Options {
   extra: string | undefined;
 }
-function scopedClassMaker(pre: string) {
-  return function (name?: string, options?: Options) {
-    const className = [pre, name].filter(Boolean).join('-');
-    if (options && options.extra) {
-      return [className, options.extra].filter(Boolean).join(' ');
+interface ClassToggle {
+  [K: string]: boolean;
+}
+function scopedClassMaker(prefix: string) {
+  return function (name?: string | ClassToggle, options?: Options) {
+    let result;
+    if (typeof name === 'string' || name === undefined) {
+      result = [prefix, name].filter(Boolean).join('-');
+    } else {
+      result = Object.entries(name)
+        .filter(k => k[1]).map(k => k[0])
+        .map(x => [prefix, x]
+          .filter(Boolean)
+          .join('-'))
+        .join(' ');
     }
-    return className
+    // const className = [prefix, name].filter(Boolean).join('-');
+    if (options && options.extra) {
+      return [result, options.extra].filter(Boolean).join(' ');
+    } else {
+      return result
+    }
   }
 }
 

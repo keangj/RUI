@@ -16,4 +16,10 @@
     flex: 1;
     flex-direction: row;
   }
+  &-hasSider {
+    flex-direction: row;
+    .rui-layout {
+      flex-direction: column;
+    }
+  }
 }
