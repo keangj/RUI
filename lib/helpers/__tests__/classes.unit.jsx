@@ -1,6 +1,6 @@
-import classes from '../classes';
+import classes, { scopedClassMaker } from '../classes'
 
-describe('测试 classes helper 方法', () => {
+describe('测试 classes helper 函数', () => {
   it('接收 0 个参数', () => {
     const result = classes();
     expect(result).toEqual('');
@@ -22,3 +22,14 @@ describe('测试 classes helper 方法', () => {
     expect(result).toEqual('a b 中文');
   });
 });
+
+describe('测试 scopedClassMaker 函数', () => {
+  it('接收字符串或对象', () => {
+    const sc = scopedClassMaker('ui');
+    expect(sc('')).toEqual('ui');
+    expect(sc('a')).toEqual('ui-a');
+    expect(sc({'': true, a: true})).toEqual('ui ui-a');
+    expect(sc({a: true, b: false, c: true})).toEqual('ui-a ui-c');
+    expect(sc({a: false, b: false, c: true}, {extra: 'd'})).toEqual('ui-c d');
+  })
+})
