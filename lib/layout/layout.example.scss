@@ -1,0 +1,29 @@
+.layout {
+  color: #fff;
+  .header {
+    background-color: #a6e3e9;
+    margin-bottom: 4px;
+    height: 60px;
+  }
+  .content {
+    background-color: #cbf1f5;
+  }
+  .sider {
+    background-color: lighten(#71c9ce, 15%);
+    width: 100px;
+  }
+  .footer {
+    background-color: #a6e3e9;
+    margin-top: 4px;
+    height: 60px;
+  }
+  .header, .content, .sider, .footer {
+    display: flex;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+  .sider + .content, .content + .sider, .sider + .layout {
+    margin-left: 4px;
+  }
+}
