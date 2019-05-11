@@ -11,27 +11,16 @@ interface Options {
 interface ClassToggle {
   [K: string]: boolean;
 }
-function scopedClassMaker(prefix: string) {
-  return function (name: string | ClassToggle, options?: Options) {
-    const names = (typeof name === 'string' || name === undefined) ?
-      {[name]: name} :
-      name;
+const scopedClassMaker = (prefix: string) =>
+   (name: string | ClassToggle, options?: Options) =>
+    Object
+      .entries(name instanceof Object ? name : {[name]: name})
+      .filter(keyVal => keyVal[1] !== false)
+      .map(keyVal => keyVal[0])
+      .map(name => [prefix, name]
+        .filter(Boolean)
+        .join('-'))
+      .concat(options && options.extra || [])
+      .join(' ');
 
-      const result = Object
-        .entries(names)
-        .filter(k => k[1] !== false)
-        .map(k => k[0])
-        .map(x => [prefix, x]
-          .filter(Boolean)
-          .join('-'))
-        .join(' ');
-
-    if (options && options.extra) {
-      return [result, options.extra].filter(Boolean).join(' ');
-    } else {
-      return result
-    }
-  }
-}
-
-export {scopedClassMaker}
+export {scopedClassMaker};
