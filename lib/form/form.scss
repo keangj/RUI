@@ -1,0 +1,11 @@
+.rui-form {
+  &-tr:not(:last-of-type) &-td {
+    padding-bottom: 12px;
+  }
+  &-tr:not(:first-of-type) &-td {
+    padding-top: 12px;
+  }
+  &-td + &-td {
+    padding-left: 16px;
+  }
+}

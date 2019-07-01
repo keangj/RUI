@@ -10,7 +10,7 @@ const FormExample = () => {
   });
   const [errors, setErrors] = useState({});
   const [fields] = useState([
-    {name: 'name', label: '用户名', input: {type: 'text'}},
+    {name: 'name', label: '用户名姓名命名', input: {type: 'text'}},
     {name: 'password', label: '密码', input: {type: 'password'}},
   ]);
   const onSubmit = () => {
