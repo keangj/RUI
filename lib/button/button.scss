@@ -1,0 +1,38 @@
+.rui-button {
+  border: 1px solid lighten(#333, 15%);
+  //background-color: lighten(#71c9ce, 15%);
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 4px 16px;
+  line-height: 22px;
+  color: #333;
+  &:focus {
+    outline: none;
+  }
+
+  &-normal {
+    &:hover, &:focus {
+      background-color: lighten(#71c9ce, 15%);
+      border-color: #71c9ce;
+      color: #fff;
+    }
+  }
+  &-danger {
+    background-color: #ed4014;
+    border-color: #ed4014;
+    color: #fff;
+    &:hover, &:focus {
+      background-color: lighten(#ed4014, 15%);
+      border-color: lighten(#ed4014, 15%);
+    }
+  }
+  &-important {
+    background-color: #71c9ce;
+    border-color: #71c9ce;
+    color: #fff;
+    &:hover, &:focus {
+      background-color: lighten(#71c9ce, 5%);
+      border-color: lighten(#71c9ce, 5%);
+    }
+  }
+}
