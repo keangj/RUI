@@ -11,7 +11,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props) => {
   const { children, className, level, ...rest } = props;
   return (
     <button
-      className={ classes('rui-button', `rui-button-${level}`, className)}
+      className={ classes('rui-button', `rui-button-${level}`, className) }
       { ...rest }
     >{ children }</button>
   )
